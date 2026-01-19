@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubecost-cost-analyzer
+  namespace: kubecost
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kubecost
+  template:
+    metadata:
+      labels:
+        app: kubecost
+    spec:
+      containers:
+      - name: cost-analyzer
+        image: kubecost/cost-model:latest
+        ports:
+        - containerPort: 9090
